@@ -1,14 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <component :is="$route.meta.layout || 'main-layout'"/>
   </div>
 </template>
 
+<script>
+import EmptyLayout from '@/layouts/EmptyLayout.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
+
+export default {
+  components: {
+    EmptyLayout,
+    MainLayout,
+  },
+};
+</script>
+
 <style lang="scss">
+@import "~materialize-css/dist/css/materialize.min.css";
+@import "assets/index.css";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
