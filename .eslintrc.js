@@ -9,9 +9,13 @@ module.exports = {
   ],
   parserOptions: {
     parser: 'babel-eslint',
+    ecmaVersion: 11
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-unused-expressions': 'warn',
+    'import/no-extraneous-dependencies': 'off',
+    'import/order': 'off'
   },
 };

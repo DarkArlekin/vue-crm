@@ -68,6 +68,12 @@ const routes = [
     meta: { layout: 'main-layout' },
     component: () => import('@/views/Record.vue'),
   },
+  {
+    path: '*',
+    name: 'NotFound',
+    meta: { layout: 'empty-layout' },
+    component: () => import('@/components/NotFound.vue'),
+  },
 ];
 
 const router = new VueRouter({

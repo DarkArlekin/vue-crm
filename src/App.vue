@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <component :is="$route.meta.layout || 'main-layout'"/>
+    <transition name="fade">
+      <component :is="$route.meta.layout || 'main-layout'"/>
+    </transition>
   </div>
 </template>
 
