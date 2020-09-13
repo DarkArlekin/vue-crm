@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     ...mapActions(['login']),
-    async submit() {
+    submit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -83,9 +83,12 @@ export default {
         email: this.email,
         password: this.pass,
       };
-      await this.login(formData)
+      this.login(formData)
         .then(() => {
           this.$router.push('/');
+        })
+        .catch((err) => {
+          throw err;
         });
     },
   },

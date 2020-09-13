@@ -13,7 +13,8 @@
 
       <ul class="right hide-on-small-and-down">
         <li>
-          <a class="dropdown-trigger black-text" href="#" data-target="dropdown"
+          <a class="dropdown-trigger black-text input-field" href="#"
+             data-target="dropdown" tabindex="1"
              ref="dropDownBtn"
           >
             USER NAME
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import fDate from '@/filters/fDate';
 
 export default {
@@ -51,8 +53,12 @@ export default {
     dropDown: undefined,
   }),
   methods: {
+    ...mapActions(['signOut']),
     logout() {
-      this.$router.push('/login?message=logout');
+      this.signOut()
+        .then(() => {
+          this.$router.push('/login?message=logout');
+        });
     },
   },
   filters: {
@@ -62,7 +68,8 @@ export default {
     this.interval = setInterval(() => {
       this.date = new Date();
     }, 1000);
-    this.dropDown = window.M.Dropdown.init(this.$refs.dropDownBtn, {
+    const el = this.$refs.dropDownBtn;
+    this.dropDown = window.M.Dropdown.init(el, {
       constrainWidth: false,
     });
   },
@@ -70,8 +77,8 @@ export default {
     if (this.interval) {
       clearInterval(this.interval);
     }
-    if (this.dropDown && this.dropDown.destroyed) {
-      this.dropDown.destroyed();
+    if (this.dropDown) {
+      this.dropDown.destroy();
     }
   },
 };

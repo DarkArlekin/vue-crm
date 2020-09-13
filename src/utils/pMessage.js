@@ -1,6 +1,6 @@
 export default {
-  install({ prototype }) {
-    prototype.$message = (html, options = false) => {
+  install(Vue) {
+    Vue.prototype.$message = (html, options = false) => {
       if (options) {
         options.err && (html += '[error] ');
       }

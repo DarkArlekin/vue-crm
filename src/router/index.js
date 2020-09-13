@@ -8,6 +8,9 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    meta: {
+      layout: 'main-layout',
+    },
     component: Home,
   },
   {
@@ -23,12 +26,6 @@ const routes = [
     name: 'register',
     meta: { layout: 'empty-layout' },
     component: () => import('@/views/Register.vue'),
-  },
-  {
-    path: '/',
-    name: 'home',
-    meta: { layout: 'main-layout' },
-    component: () => import('@/views/Home.vue'),
   },
   {
     path: '/categories',
