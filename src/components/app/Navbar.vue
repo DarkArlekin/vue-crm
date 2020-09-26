@@ -7,7 +7,7 @@
           <i class="material-icons black-text">dehaze</i>
         </a>
         <span class="black-text">
-          {{ date | fDate }}
+          {{ date | fDate('date time') }}
         </span>
       </div>
 
@@ -17,7 +17,7 @@
              data-target="dropdown" tabindex="1"
              ref="dropDownBtn"
           >
-            USER NAME
+            {{ getUserInfo.name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import fDate from '@/filters/fDate';
 
 export default {
@@ -52,6 +52,9 @@ export default {
     interval: undefined,
     dropDown: undefined,
   }),
+  computed: {
+    ...mapGetters(['getUserInfo']),
+  },
   methods: {
     ...mapActions(['signOut']),
     logout() {

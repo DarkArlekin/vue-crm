@@ -78,17 +78,12 @@ export default {
         this.$v.$touch();
         return;
       }
-
-      const formData = {
+      this.login({
         email: this.email,
         password: this.pass,
-      };
-      this.login(formData)
+      })
         .then(() => {
           this.$router.push('/');
-        })
-        .catch((err) => {
-          throw err;
         });
     },
   },

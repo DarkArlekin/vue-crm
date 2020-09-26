@@ -13,8 +13,13 @@ import fireinit from './fireinit.json';
 import 'materialize-css/dist/js/materialize.min';
 import pMessage from '@/utils/pMessage';
 
+import fCurrency from '@/filters/fCurrency';
+import Loader from '@/components/app/Loader.vue';
+
 Vue.use(pMessage);
 Vue.use(Vuelidate);
+Vue.filter('curr', fCurrency);
+Vue.component('Loader', Loader);
 
 Vue.config.productionTip = false;
 

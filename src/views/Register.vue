@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { email, minLength, required } from 'vuelidate/lib/validators';
 
 export default {
@@ -78,6 +79,7 @@ export default {
     agree: false,
   }),
   methods: {
+    ...mapActions(['register']),
     submit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -90,9 +92,13 @@ export default {
         name: this.name,
       };
 
-      console.log(formData);
-
-      this.$router.push('/');
+      this.register(formData)
+        .then(() => {
+          this.$router.push('/');
+        })
+        .catch((err) => {
+          throw err;
+        });
     },
   },
   validations: {
