@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+// eslint-disable-next-line no-unused-vars
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 Vue.use(VueRouter);
 
@@ -23,7 +26,7 @@ const routes = [
   },
   {
     path: '/register',
-    name: 'register',
+    name: 'Register',
     meta: { layout: 'empty-layout' },
     component: () => import('@/views/Register.vue'),
   },
@@ -77,6 +80,14 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'Login' || to.name === 'Register') {
+    next();
+  } else if (!firebase.auth().currentUser) {
+    next({ name: 'Login' });
+  } else next();
 });
 
 export default router;

@@ -80,9 +80,9 @@ export default {
         title: this.name,
         limit: this.num,
       })
-        .then((e) => {
+        .then(() => {
           this.resetFields();
-          this.$emit('createCategory', e);
+          this.$emit('createCategory');
           this.$message('Категоря была создана');
         });
     },

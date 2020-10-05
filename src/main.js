@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import App from './App.vue';
+import Paginate from 'vuejs-paginate';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
@@ -20,6 +21,7 @@ Vue.use(pMessage);
 Vue.use(Vuelidate);
 Vue.filter('curr', fCurrency);
 Vue.component('Loader', Loader);
+Vue.component('Paginate', Paginate);
 
 Vue.config.productionTip = false;
 

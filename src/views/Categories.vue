@@ -7,13 +7,14 @@
     <section v-else>
       <div class="row">
         <CategoryCreate
-          @createCategory="addCategory"/>
-        <CategoryEdit/>
+          @createCategory="updateCategories"/>
+        <CategoryEdit
+          v-if="categories.length"
+          @categoryEdited="updateCategories"
+          :categories="categories"/>
+        <h4 v-else> Нет категорий </h4>
       </div>
     </section>
-    <div v-for="(cat, ind) in categories" :key="'cat' + ind">
-      <a href="">{{ cat }}</a>
-    </div>
   </div>
 </template>
 
@@ -33,17 +34,17 @@ export default {
     CategoryCreate,
   },
   mounted() {
-    this.fetchCategories()
-      .then((e) => {
-        console.log(e);
-        this.categories = e;
-        this.loading = false;
-      });
+    this.updateCategories();
   },
   methods: {
     ...mapActions(['fetchCategories']),
-    addCategory(e) {
-      this.categories.push(e);
+    updateCategories() {
+      this.loading = true;
+      this.fetchCategories()
+        .then((e) => {
+          this.categories = e;
+          this.loading = false;
+        });
     },
   },
 };

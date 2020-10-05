@@ -3,7 +3,7 @@ export default {
     Vue.prototype.$message = (html, options = false) => {
       let displayLength = 1200
       if (options) {
-        options.err && (html += '[error] ');
+        options.err && (html = '[error] ' + html);
         options.displayLength && (displayLength = options.displayLength);
       }
 

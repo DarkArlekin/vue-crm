@@ -38,5 +38,15 @@ export default {
           id: key,
         }));
     },
+    async updateCategory({ dispatch }, { title, limit, id }) {
+      const uid = await dispatch('getUid');
+      await firebase
+        .database()
+        .ref(`/users/${uid}/categories/${id}`)
+        .update({
+          title,
+          limit,
+        });
+    },
   },
 };

@@ -9,11 +9,24 @@
 <script>
 import EmptyLayout from '@/layouts/EmptyLayout.vue';
 import MainLayout from '@/layouts/MainLayout.vue';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 export default {
   components: {
     EmptyLayout,
     MainLayout,
+  },
+  async mounted() {
+    const starCountRef = await firebase.database().ref('users');
+    starCountRef.on('value', (snapshot) => {
+      console.log(snapshot.val());
+    });
+
+    // await firebase.database();
+    // .onSnapshot((doc) => {
+    //   console.log('Current data: ', doc.data());
+    // });
   },
 };
 </script>
