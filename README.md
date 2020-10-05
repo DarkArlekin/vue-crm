@@ -1,9 +1,7 @@
 # vue-crm
 
 ### Project overview
-```
 [Project overview](https://vue-my-srm.web.app)
-```
 
 ## Project setup
 ```
