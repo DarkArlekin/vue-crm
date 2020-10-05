@@ -1,5 +1,10 @@
 # vue-crm
 
+### Project overview
+```
+https://vue-my-srm.web.app
+```
+
 ## Project setup
 ```
 yarn install
